@@ -1,0 +1,104 @@
+{
+  "case": "02_conflict",
+  "mode": "demo",
+  "question": "差旅报销期限是多少天？",
+  "result": {
+    "mode": "demo",
+    "status": "needs_clarification",
+    "answer": "目前无法直接给出唯一的报销期限：D01 规定 30天；D02 规定 15天。两份资料均未提供可确认的适用优先级，请确认应以哪个制度为准，或提供制度优先级/适用部门信息。",
+    "citations": [
+      {
+        "doc_id": "D01",
+        "title": "差旅报销制度（财务部版）",
+        "version": "v1.0",
+        "version_date": "2026-04-10",
+        "source": "合成制度/财务部",
+        "chunk_id": "D01-6a6cec754ace",
+        "quote": "第二条 提交时限：员工应在差旅结束之日起30个自然日内提交报销申请，附完整发票与行程凭证"
+      },
+      {
+        "doc_id": "D02",
+        "title": "差旅报销执行指引（行政部版）",
+        "version": "v2.0",
+        "version_date": "2026-06-12",
+        "source": "合成指引/行政部",
+        "chunk_id": "D02-c863c8fe56bc",
+        "quote": "第二条 提交时限：员工应在差旅结束之日起15个自然日内提交报销申请，并提供发票及出差审批记录"
+      }
+    ],
+    "missing_information": [
+      "适用制度或制度优先级的正式确认"
+    ],
+    "trace": [
+      {
+        "step": 1,
+        "stage": "decision",
+        "action": "search_documents",
+        "arguments": {
+          "query": "差旅报销期限是多少天？",
+          "top_k": 6
+        },
+        "reason_summary": "尚未获取证据，先检索候选资料。"
+      },
+      {
+        "step": 1,
+        "stage": "tool",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "差旅报销期限是多少天？",
+          "top_k": 6
+        },
+        "success": true,
+        "result_summary": "命中 2 份文档：D01(0.69), D02(0.69)"
+      },
+      {
+        "step": 2,
+        "stage": "decision",
+        "action": "read_document",
+        "arguments": {
+          "doc_id": "D01"
+        },
+        "reason_summary": "已发现不同报销期限，须逐份读取原文核查适用范围和优先级。"
+      },
+      {
+        "step": 2,
+        "stage": "tool",
+        "tool": "read_document",
+        "arguments": {
+          "doc_id": "D01"
+        },
+        "success": true,
+        "result_summary": "已读取 D01 全文、版本与适用范围（165 字）"
+      },
+      {
+        "step": 3,
+        "stage": "decision",
+        "action": "read_document",
+        "arguments": {
+          "doc_id": "D02"
+        },
+        "reason_summary": "已发现不同报销期限，须逐份读取原文核查适用范围和优先级。"
+      },
+      {
+        "step": 3,
+        "stage": "tool",
+        "tool": "read_document",
+        "arguments": {
+          "doc_id": "D02"
+        },
+        "success": true,
+        "result_summary": "已读取 D02 全文、版本与适用范围（173 字）"
+      },
+      {
+        "step": 4,
+        "stage": "decision",
+        "action": "ask_user",
+        "arguments": {},
+        "reason_summary": "原文确认存在同范围制度冲突，未找到可确定优先级的规则。"
+      }
+    ],
+    "decision_steps": 4,
+    "tool_calls": 3
+  },
+  "truth": "合成制度，离线动作策略"
+}

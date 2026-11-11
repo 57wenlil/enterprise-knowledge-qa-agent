@@ -1,0 +1,122 @@
+[
+  {
+    "question": "差旅报销期限是多少天？",
+    "mode": "llm",
+    "status": "needs_clarification",
+    "answer": "现有资料存在冲突：财务部《差旅报销制度》规定差旅结束之日起30个自然日内提交报销申请；行政部《差旅报销执行指引》规定差旅结束之日起15个自然日内提交报销申请。两者适用范围均为全体正式员工，且均未说明优先级关系，因此无法仅凭现有资料确认唯一期限。请确认应适用哪份规定，或提供两者之间的优先级/适用规则。",
+    "citations": [
+      {
+        "doc_id": "D01",
+        "title": "差旅报销制度（财务部版）",
+        "version": "v1.0",
+        "version_date": "2026-04-10",
+        "source": "合成制度/财务部",
+        "chunk_id": "D01-6a6cec754ace",
+        "quote": "第二条 提交时限：员工应在差旅结束之日起30个自然日内提交报销申请，附完整发票与行程凭证。"
+      },
+      {
+        "doc_id": "D01",
+        "title": "差旅报销制度（财务部版）",
+        "version": "v1.0",
+        "version_date": "2026-04-10",
+        "source": "合成制度/财务部",
+        "chunk_id": "D01-6a6cec754ace",
+        "quote": "第四条 未明确事项：本制度没有说明与其他部门指引冲突时的优先适用规则。"
+      },
+      {
+        "doc_id": "D02",
+        "title": "差旅报销执行指引（行政部版）",
+        "version": "v2.0",
+        "version_date": "2026-06-12",
+        "source": "合成指引/行政部",
+        "chunk_id": "D02-c863c8fe56bc",
+        "quote": "第二条 提交时限：员工应在差旅结束之日起15个自然日内提交报销申请，并提供发票及出差审批记录。"
+      },
+      {
+        "doc_id": "D02",
+        "title": "差旅报销执行指引（行政部版）",
+        "version": "v2.0",
+        "version_date": "2026-06-12",
+        "source": "合成指引/行政部",
+        "chunk_id": "D02-c863c8fe56bc",
+        "quote": "第四条 本指引没有注明其与财务部《差旅报销制度》之间的优先级关系。"
+      }
+    ],
+    "missing_information": [
+      "财务部《差旅报销制度》与行政部《差旅报销执行指引》之间的优先级或适用规则",
+      "用户确认本次差旅报销应按哪份规定执行"
+    ],
+    "trace": [
+      {
+        "step": 1,
+        "stage": "decision",
+        "action": "search_documents",
+        "arguments": {
+          "query": "差旅报销期限 天数",
+          "top_k": 5
+        },
+        "reason_summary": "尚未检索资料，需要先查找差旅报销期限相关文档。"
+      },
+      {
+        "step": 1,
+        "stage": "tool",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "差旅报销期限 天数",
+          "top_k": 5
+        },
+        "success": true,
+        "result_summary": "命中 2 份文档：D01(0.88), D02(0.88)"
+      },
+      {
+        "step": 2,
+        "stage": "decision",
+        "action": "read_document",
+        "arguments": {
+          "doc_id": "D01"
+        },
+        "reason_summary": "检索结果显示 D01 与 D02 对差旅报销期限分别规定为 30 天和 15 天，且适用范围均为全体正式员工。需先读取 D01 完整原文，核对版本、适用范围及是否存在优先级说明。"
+      },
+      {
+        "step": 2,
+        "stage": "tool",
+        "tool": "read_document",
+        "arguments": {
+          "doc_id": "D01"
+        },
+        "success": true,
+        "result_summary": "已读取 D01 全文、版本与适用范围（165 字）"
+      },
+      {
+        "step": 3,
+        "stage": "decision",
+        "action": "read_document",
+        "arguments": {
+          "doc_id": "D02"
+        },
+        "reason_summary": "检索结果发现 D01 规定差旅报销提交时限为 30 个自然日，D02 规定为 15 个自然日，且两者适用范围均为全体正式员工。已读取 D01 完整原文，下一步需读取 D02 完整原文，以核对版本、生效日期、适用范围及是否存在优先级依据。"
+      },
+      {
+        "step": 3,
+        "stage": "tool",
+        "tool": "read_document",
+        "arguments": {
+          "doc_id": "D02"
+        },
+        "success": true,
+        "result_summary": "已读取 D02 全文、版本与适用范围（173 字）"
+      },
+      {
+        "step": 4,
+        "stage": "decision",
+        "action": "ask_user",
+        "arguments": {
+          "question": "请确认差旅报销期限应优先适用财务部《差旅报销制度》的30个自然日，还是行政部《差旅报销执行指引》的15个自然日；如两者存在优先级或适用规则，请提供该规则。"
+        },
+        "reason_summary": "已检索并读取D01与D02。两份文件均适用于全体正式员工，但差旅报销提交时限分别为30个自然日和15个自然日；两份文件均未说明彼此优先级，因此不能仅凭版本或生效日期自行选择，需要用户确认适用规则。"
+      }
+    ],
+    "decision_steps": 4,
+    "tool_calls": 3
+  }
+]

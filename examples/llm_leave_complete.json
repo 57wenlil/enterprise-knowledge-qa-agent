@@ -1,0 +1,71 @@
+[
+  {
+    "question": "我已经工作满1年但不到10年，每年有几天年假？",
+    "mode": "llm",
+    "status": "completed",
+    "answer": "每年有5天带薪年休假。",
+    "citations": [
+      {
+        "doc_id": "D03",
+        "title": "员工年休假制度",
+        "version": "v1.3",
+        "version_date": "2026-03-05",
+        "source": "合成制度/人力资源部",
+        "chunk_id": "D03-1b49117e5210",
+        "quote": "第一条 休假天数：累计工作已满1年不满10年的员工，每年享有5天带薪年休假；其他工龄档次由人力资源部门另行确认。"
+      }
+    ],
+    "missing_information": [],
+    "trace": [
+      {
+        "step": 1,
+        "stage": "decision",
+        "action": "search_documents",
+        "arguments": {
+          "query": "工作满1年但不到10年 年假 天数",
+          "top_k": 5
+        },
+        "reason_summary": "当前问题涉及年假天数，且没有已读原文证据；需先检索企业资料以定位年假规定。"
+      },
+      {
+        "step": 1,
+        "stage": "tool",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "工作满1年但不到10年 年假 天数",
+          "top_k": 5
+        },
+        "success": true,
+        "result_summary": "命中 1 份文档：D03(0.69)"
+      },
+      {
+        "step": 2,
+        "stage": "decision",
+        "action": "read_document",
+        "arguments": {
+          "doc_id": "D03"
+        },
+        "reason_summary": "检索结果提示 D03 可能规定累计工作已满1年不满10年的员工每年享有5天带薪年休假，但正式回答前需要读取完整原文，确认适用范围、版本和原文依据。"
+      },
+      {
+        "step": 2,
+        "stage": "tool",
+        "tool": "read_document",
+        "arguments": {
+          "doc_id": "D03"
+        },
+        "success": true,
+        "result_summary": "已读取 D03 全文、版本与适用范围（148 字）"
+      },
+      {
+        "step": 3,
+        "stage": "decision",
+        "action": "finish",
+        "arguments": {},
+        "reason_summary": "已检索并读取《员工年休假制度》D03，原文明确规定累计工作已满1年不满10年的员工每年享有5天带薪年休假，证据充分。"
+      }
+    ],
+    "decision_steps": 3,
+    "tool_calls": 2
+  }
+]

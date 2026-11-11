@@ -1,0 +1,47 @@
+{
+  "case": "06_tool_failure",
+  "mode": "demo",
+  "question": "年假有几天？",
+  "result": {
+    "mode": "demo",
+    "status": "error",
+    "answer": "知识库工具执行失败，无法核对原文；本轮不提供未经证实的答案。",
+    "citations": [],
+    "missing_information": [
+      "RuntimeError: 模拟 search_documents 工具不可用"
+    ],
+    "trace": [
+      {
+        "step": 1,
+        "stage": "decision",
+        "action": "search_documents",
+        "arguments": {
+          "query": "年假有几天？",
+          "top_k": 6
+        },
+        "reason_summary": "尚未获取证据，先检索候选资料。"
+      },
+      {
+        "step": 1,
+        "stage": "tool",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "年假有几天？",
+          "top_k": 6
+        },
+        "success": false,
+        "result_summary": "工具调用失败：RuntimeError: 模拟 search_documents 工具不可用"
+      },
+      {
+        "step": 2,
+        "stage": "decision",
+        "action": "finish",
+        "arguments": {},
+        "reason_summary": "观察到工具失败；停止，避免编造答案。"
+      }
+    ],
+    "decision_steps": 2,
+    "tool_calls": 1
+  },
+  "truth": "合成制度，离线动作策略"
+}

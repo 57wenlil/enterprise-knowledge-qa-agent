@@ -1,0 +1,38 @@
+[
+  {
+    "doc_id": "D01", "title": "差旅报销制度（财务部版）", "path": "docs/D01.md",
+    "version": "v1.0", "version_date": "2026-04-10", "scope": "全体正式员工", "effective_from": "2026-05-01",
+    "topic": "差旅报销期限", "claim_key": "travel_reimbursement_deadline", "claim_value": "30天",
+    "authority": null, "source": "合成制度/财务部"
+  },
+  {
+    "doc_id": "D02", "title": "差旅报销执行指引（行政部版）", "path": "docs/D02.md",
+    "version": "v2.0", "version_date": "2026-06-12", "scope": "全体正式员工", "effective_from": "2026-06-20",
+    "topic": "差旅报销期限", "claim_key": "travel_reimbursement_deadline", "claim_value": "15天",
+    "authority": null, "source": "合成指引/行政部"
+  },
+  {
+    "doc_id": "D03", "title": "员工年休假制度", "path": "docs/D03.md",
+    "version": "v1.3", "version_date": "2026-03-05", "scope": "全体正式员工", "effective_from": "2026-03-10",
+    "topic": "年休假", "claim_key": "annual_leave_days_under_10_years", "claim_value": "5天",
+    "authority": "人力资源部", "source": "合成制度/人力资源部"
+  },
+  {
+    "doc_id": "D04", "title": "办公设备故障报修 FAQ", "path": "docs/D04.md",
+    "version": "v1.0", "version_date": "2026-02-15", "scope": "全体员工", "effective_from": "2026-02-15",
+    "topic": "设备故障", "claim_key": "device_repair_response", "claim_value": "2工作小时",
+    "authority": "IT服务台", "source": "合成FAQ/IT服务台"
+  },
+  {
+    "doc_id": "D05", "title": "账号与信息安全规范", "path": "docs/D05.md",
+    "version": "v1.1", "version_date": "2026-01-20", "scope": "全体员工", "effective_from": "2026-01-20",
+    "topic": "信息安全", "claim_key": "password_treatment", "claim_value": "不得共享密码",
+    "authority": "信息安全部", "source": "合成制度/信息安全部"
+  },
+  {
+    "doc_id": "D06", "title": "员工在岗学习 FAQ", "path": "docs/D06.md",
+    "version": "v1.0", "version_date": "2026-07-01", "scope": "全体员工", "effective_from": "2026-07-01",
+    "topic": "学习培训", "claim_key": "training_expense_approval", "claim_value": "主管审批",
+    "authority": "人力资源部", "source": "合成FAQ/人力资源部"
+  }
+]

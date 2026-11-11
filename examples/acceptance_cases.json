@@ -1,0 +1,491 @@
+[
+  {
+    "case": "01_clear_answer",
+    "mode": "demo",
+    "question": "年假有几天？",
+    "result": {
+      "mode": "demo",
+      "status": "completed",
+      "answer": "根据 D03《员工年休假制度》：第一条 休假天数：累计工作已满1年不满10年的员工，每年享有5天带薪年休假；其他工龄档次由人力资源部门另行确认。",
+      "citations": [
+        {
+          "doc_id": "D03",
+          "title": "员工年休假制度",
+          "version": "v1.3",
+          "version_date": "2026-03-05",
+          "source": "合成制度/人力资源部",
+          "chunk_id": "D03-1b49117e5210",
+          "quote": "第一条 休假天数：累计工作已满1年不满10年的员工，每年享有5天带薪年休假；其他工龄档次由人力资源部门另行确认"
+        }
+      ],
+      "missing_information": [],
+      "trace": [
+        {
+          "step": 1,
+          "stage": "decision",
+          "action": "search_documents",
+          "arguments": {
+            "query": "年假有几天？",
+            "top_k": 6
+          },
+          "reason_summary": "尚未获取证据，先检索候选资料。"
+        },
+        {
+          "step": 1,
+          "stage": "tool",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "年假有几天？",
+            "top_k": 6
+          },
+          "success": true,
+          "result_summary": "命中 1 份文档：D03(0.41)"
+        },
+        {
+          "step": 2,
+          "stage": "decision",
+          "action": "read_document",
+          "arguments": {
+            "doc_id": "D03"
+          },
+          "reason_summary": "检索命中 D03，先读取原文核实答案和文档版本。"
+        },
+        {
+          "step": 2,
+          "stage": "tool",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D03"
+          },
+          "success": true,
+          "result_summary": "已读取 D03 全文、版本与适用范围（148 字）"
+        },
+        {
+          "step": 3,
+          "stage": "decision",
+          "action": "finish",
+          "arguments": {},
+          "reason_summary": "已核对原文，可给出带引用的回答。"
+        }
+      ],
+      "decision_steps": 3,
+      "tool_calls": 2
+    },
+    "truth": "合成制度，离线动作策略"
+  },
+  {
+    "case": "02_conflict",
+    "mode": "demo",
+    "question": "差旅报销期限是多少天？",
+    "result": {
+      "mode": "demo",
+      "status": "needs_clarification",
+      "answer": "目前无法直接给出唯一的报销期限：D01 规定 30天；D02 规定 15天。两份资料均未提供可确认的适用优先级，请确认应以哪个制度为准，或提供制度优先级/适用部门信息。",
+      "citations": [
+        {
+          "doc_id": "D01",
+          "title": "差旅报销制度（财务部版）",
+          "version": "v1.0",
+          "version_date": "2026-04-10",
+          "source": "合成制度/财务部",
+          "chunk_id": "D01-6a6cec754ace",
+          "quote": "第二条 提交时限：员工应在差旅结束之日起30个自然日内提交报销申请，附完整发票与行程凭证"
+        },
+        {
+          "doc_id": "D02",
+          "title": "差旅报销执行指引（行政部版）",
+          "version": "v2.0",
+          "version_date": "2026-06-12",
+          "source": "合成指引/行政部",
+          "chunk_id": "D02-c863c8fe56bc",
+          "quote": "第二条 提交时限：员工应在差旅结束之日起15个自然日内提交报销申请，并提供发票及出差审批记录"
+        }
+      ],
+      "missing_information": [
+        "适用制度或制度优先级的正式确认"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "stage": "decision",
+          "action": "search_documents",
+          "arguments": {
+            "query": "差旅报销期限是多少天？",
+            "top_k": 6
+          },
+          "reason_summary": "尚未获取证据，先检索候选资料。"
+        },
+        {
+          "step": 1,
+          "stage": "tool",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "差旅报销期限是多少天？",
+            "top_k": 6
+          },
+          "success": true,
+          "result_summary": "命中 2 份文档：D01(0.69), D02(0.69)"
+        },
+        {
+          "step": 2,
+          "stage": "decision",
+          "action": "read_document",
+          "arguments": {
+            "doc_id": "D01"
+          },
+          "reason_summary": "已发现不同报销期限，须逐份读取原文核查适用范围和优先级。"
+        },
+        {
+          "step": 2,
+          "stage": "tool",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D01"
+          },
+          "success": true,
+          "result_summary": "已读取 D01 全文、版本与适用范围（165 字）"
+        },
+        {
+          "step": 3,
+          "stage": "decision",
+          "action": "read_document",
+          "arguments": {
+            "doc_id": "D02"
+          },
+          "reason_summary": "已发现不同报销期限，须逐份读取原文核查适用范围和优先级。"
+        },
+        {
+          "step": 3,
+          "stage": "tool",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D02"
+          },
+          "success": true,
+          "result_summary": "已读取 D02 全文、版本与适用范围（173 字）"
+        },
+        {
+          "step": 4,
+          "stage": "decision",
+          "action": "ask_user",
+          "arguments": {},
+          "reason_summary": "原文确认存在同范围制度冲突，未找到可确定优先级的规则。"
+        }
+      ],
+      "decision_steps": 4,
+      "tool_calls": 3
+    },
+    "truth": "合成制度，离线动作策略"
+  },
+  {
+    "case": "03_out_of_scope",
+    "mode": "demo",
+    "question": "明天哪只股票涨得最多？",
+    "result": {
+      "mode": "demo",
+      "status": "insufficient_evidence",
+      "answer": "当前提供的合成制度和 FAQ 中未找到足以回答该问题的资料，无法确认。",
+      "citations": [],
+      "missing_information": [
+        "需要提供与问题有关的可靠制度或 FAQ"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "stage": "decision",
+          "action": "search_documents",
+          "arguments": {
+            "query": "明天哪只股票涨得最多？",
+            "top_k": 6
+          },
+          "reason_summary": "尚未获取证据，先检索候选资料。"
+        },
+        {
+          "step": 1,
+          "stage": "tool",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "明天哪只股票涨得最多？",
+            "top_k": 6
+          },
+          "success": true,
+          "result_summary": "命中 0 份文档："
+        },
+        {
+          "step": 2,
+          "stage": "decision",
+          "action": "finish",
+          "arguments": {},
+          "reason_summary": "检索未命中可用文档，不能猜测。"
+        }
+      ],
+      "decision_steps": 2,
+      "tool_calls": 1
+    },
+    "truth": "合成制度，离线动作策略"
+  },
+  {
+    "case": "04_paraphrase",
+    "mode": "demo",
+    "question": "员工入职一年可以休多少天带薪假？",
+    "result": {
+      "mode": "demo",
+      "status": "completed",
+      "answer": "根据 D03《员工年休假制度》：第一条 休假天数：累计工作已满1年不满10年的员工，每年享有5天带薪年休假；其他工龄档次由人力资源部门另行确认。",
+      "citations": [
+        {
+          "doc_id": "D03",
+          "title": "员工年休假制度",
+          "version": "v1.3",
+          "version_date": "2026-03-05",
+          "source": "合成制度/人力资源部",
+          "chunk_id": "D03-1b49117e5210",
+          "quote": "第一条 休假天数：累计工作已满1年不满10年的员工，每年享有5天带薪年休假；其他工龄档次由人力资源部门另行确认"
+        }
+      ],
+      "missing_information": [],
+      "trace": [
+        {
+          "step": 1,
+          "stage": "decision",
+          "action": "search_documents",
+          "arguments": {
+            "query": "员工入职一年可以休多少天带薪假？",
+            "top_k": 6
+          },
+          "reason_summary": "尚未获取证据，先检索候选资料。"
+        },
+        {
+          "step": 1,
+          "stage": "tool",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "员工入职一年可以休多少天带薪假？",
+            "top_k": 6
+          },
+          "success": true,
+          "result_summary": "命中 1 份文档：D03(0.34)"
+        },
+        {
+          "step": 2,
+          "stage": "decision",
+          "action": "read_document",
+          "arguments": {
+            "doc_id": "D03"
+          },
+          "reason_summary": "检索命中 D03，先读取原文核实答案和文档版本。"
+        },
+        {
+          "step": 2,
+          "stage": "tool",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D03"
+          },
+          "success": true,
+          "result_summary": "已读取 D03 全文、版本与适用范围（148 字）"
+        },
+        {
+          "step": 3,
+          "stage": "decision",
+          "action": "finish",
+          "arguments": {},
+          "reason_summary": "已核对原文，可给出带引用的回答。"
+        }
+      ],
+      "decision_steps": 3,
+      "tool_calls": 2
+    },
+    "truth": "合成制度，离线动作策略"
+  },
+  {
+    "case": "05_context_followup",
+    "mode": "demo",
+    "question": "年假有几天？",
+    "result": {
+      "mode": "demo",
+      "status": "completed",
+      "answer": "根据 D03《员工年休假制度》：第一条 休假天数：累计工作已满1年不满10年的员工，每年享有5天带薪年休假；其他工龄档次由人力资源部门另行确认。",
+      "citations": [
+        {
+          "doc_id": "D03",
+          "title": "员工年休假制度",
+          "version": "v1.3",
+          "version_date": "2026-03-05",
+          "source": "合成制度/人力资源部",
+          "chunk_id": "D03-1b49117e5210",
+          "quote": "第一条 休假天数：累计工作已满1年不满10年的员工，每年享有5天带薪年休假；其他工龄档次由人力资源部门另行确认"
+        }
+      ],
+      "missing_information": [],
+      "trace": [
+        {
+          "step": 1,
+          "stage": "decision",
+          "action": "search_documents",
+          "arguments": {
+            "query": "年假有几天？",
+            "top_k": 6
+          },
+          "reason_summary": "尚未获取证据，先检索候选资料。"
+        },
+        {
+          "step": 1,
+          "stage": "tool",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "年假有几天？",
+            "top_k": 6
+          },
+          "success": true,
+          "result_summary": "命中 1 份文档：D03(0.41)"
+        },
+        {
+          "step": 2,
+          "stage": "decision",
+          "action": "read_document",
+          "arguments": {
+            "doc_id": "D03"
+          },
+          "reason_summary": "检索命中 D03，先读取原文核实答案和文档版本。"
+        },
+        {
+          "step": 2,
+          "stage": "tool",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D03"
+          },
+          "success": true,
+          "result_summary": "已读取 D03 全文、版本与适用范围（148 字）"
+        },
+        {
+          "step": 3,
+          "stage": "decision",
+          "action": "finish",
+          "arguments": {},
+          "reason_summary": "已核对原文，可给出带引用的回答。"
+        }
+      ],
+      "decision_steps": 3,
+      "tool_calls": 2
+    },
+    "truth": "合成制度，离线动作策略",
+    "followup_question": "那要提前多久申请？",
+    "followup_result": {
+      "mode": "demo",
+      "status": "completed",
+      "answer": "根据 D03《员工年休假制度》：第二条 申请流程：员工申请年休假原则上至少提前3个工作日通过内部审批系统提交申请，经直属主管批准后生效。",
+      "citations": [
+        {
+          "doc_id": "D03",
+          "title": "员工年休假制度",
+          "version": "v1.3",
+          "version_date": "2026-03-05",
+          "source": "合成制度/人力资源部",
+          "chunk_id": "D03-1b49117e5210",
+          "quote": "第二条 申请流程：员工申请年休假原则上至少提前3个工作日通过内部审批系统提交申请，经直属主管批准后生效"
+        }
+      ],
+      "missing_information": [],
+      "trace": [
+        {
+          "step": 1,
+          "stage": "decision",
+          "action": "search_documents",
+          "arguments": {
+            "query": "年假 那要提前多久申请？",
+            "top_k": 6
+          },
+          "reason_summary": "尚未获取证据，先检索候选资料。"
+        },
+        {
+          "step": 1,
+          "stage": "tool",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "年假 那要提前多久申请？",
+            "top_k": 6
+          },
+          "success": true,
+          "result_summary": "命中 1 份文档：D03(0.40)"
+        },
+        {
+          "step": 2,
+          "stage": "decision",
+          "action": "read_document",
+          "arguments": {
+            "doc_id": "D03"
+          },
+          "reason_summary": "检索命中 D03，先读取原文核实答案和文档版本。"
+        },
+        {
+          "step": 2,
+          "stage": "tool",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D03"
+          },
+          "success": true,
+          "result_summary": "已读取 D03 全文、版本与适用范围（148 字）"
+        },
+        {
+          "step": 3,
+          "stage": "decision",
+          "action": "finish",
+          "arguments": {},
+          "reason_summary": "已核对原文，可给出带引用的回答。"
+        }
+      ],
+      "decision_steps": 3,
+      "tool_calls": 2
+    }
+  },
+  {
+    "case": "06_tool_failure",
+    "mode": "demo",
+    "question": "年假有几天？",
+    "result": {
+      "mode": "demo",
+      "status": "error",
+      "answer": "知识库工具执行失败，无法核对原文；本轮不提供未经证实的答案。",
+      "citations": [],
+      "missing_information": [
+        "RuntimeError: 模拟 search_documents 工具不可用"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "stage": "decision",
+          "action": "search_documents",
+          "arguments": {
+            "query": "年假有几天？",
+            "top_k": 6
+          },
+          "reason_summary": "尚未获取证据，先检索候选资料。"
+        },
+        {
+          "step": 1,
+          "stage": "tool",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "年假有几天？",
+            "top_k": 6
+          },
+          "success": false,
+          "result_summary": "工具调用失败：RuntimeError: 模拟 search_documents 工具不可用"
+        },
+        {
+          "step": 2,
+          "stage": "decision",
+          "action": "finish",
+          "arguments": {},
+          "reason_summary": "观察到工具失败；停止，避免编造答案。"
+        }
+      ],
+      "decision_steps": 2,
+      "tool_calls": 1
+    },
+    "truth": "合成制度，离线动作策略"
+  }
+]
